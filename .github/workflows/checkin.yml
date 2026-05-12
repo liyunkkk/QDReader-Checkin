@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: node qdreader.js
+      - run: node qdreader.js || true
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
           QDREADER_COOKIE: ${{ secrets.QDREADER_COOKIE }}
