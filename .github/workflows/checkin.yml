@@ -3,6 +3,8 @@ name: 起点读书自动签到
 on:
   schedule:
     - cron: '0 0 * * *'
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
