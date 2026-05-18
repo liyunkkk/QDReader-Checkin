@@ -9,6 +9,9 @@ on:
 
 jobs:
   checkin:
+    strategy:
+      matrix:
+        account: [1, 2]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,10 +19,11 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: node qdreader.js || true
+      - name: "账号 ${{ matrix.account }} 签到"
+        run: node qdreader.js || true
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
-          QDREADER_COOKIE: ${{ secrets.QDREADER_COOKIE }}
+          QDREADER_COOKIE: ${{ secrets[format('QDREADER_COOKIE_{0}', matrix.account)] }}
           QDREADER_DEBUG: ${{ secrets.QDREADER_DEBUG }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
