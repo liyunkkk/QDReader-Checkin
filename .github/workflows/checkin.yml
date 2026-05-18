@@ -25,7 +25,6 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_USER_ID: ${{ secrets.TG_USER_ID }}
       - name: "账号 2 签到"
-        if: ${{ secrets.QDREADER_COOKIE_2 != '' }}
         run: node qdreader.js || true
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
